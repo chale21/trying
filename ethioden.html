@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating System</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f0f0f0; text-align: center; padding: 50px; }
+        h1 { color: #333; }
+        .stars { cursor: pointer; font-size: 40px; color: #ccc; }
+        .selected { color: #ffcc00; } /* Gold color for selected stars */
+        #totalRating { font-size: 24px; margin-top: 20px; color: #007BFF; }
+    </style>
+</head>
+<body>
+    <h1>Rate Our Product</h1>
+    <div class="stars" data-value="1">★</div>
+    <div class="stars" data-value="2">★</div>
+    <div class="stars" data-value="3">★</div>
+    <div class="stars" data-value="4">★</div>
+    <div class="stars" data-value="5">★</div>
+    <div id="totalRating">Total Rating: 0</div>
+
+    <script>
+        const stars = document.querySelectorAll('.stars');
+        let totalRating = 0;
+
+stars.forEach(star => {
+    star.addEventListener('click', () => {
+        // Reset selected stars and highlight the clicked one
+        stars.forEach(s => s.classList.remove('selected'));
+        
+        // Highlight the clicked star and all previous stars
+        const value = parseInt(star.dataset.value);
+        for (let i = 0; i < value; i++) {
+            stars[i].classList.add('selected');
+        }
+
+        // Update total rating (increment by 1)
+        totalRating += 1;
+        document.getElementById("totalRating").innerText = "Total Rating: " + totalRating;
+    });
+});
+</script>
+</body>
+</html>
